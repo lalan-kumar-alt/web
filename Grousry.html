@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ 
+
+<body>
+    
+    <div>
+        <div>
+             <div> 
+                  <table class="big">
+                      <tr>
+                          <th>Item Name</th>
+                          <th>Iteam Price(in ₹/-)</th>
+                          <th style="text-align: center; background:linear-gradient(to bottom,red , white);border: 1px ; box-shadow: 0px 0px 7px whitesmoke; color: whitesmoke;border-radius: 6px;" id="formet">Formet</th>
+                      </tr>
+                      <tr> 
+                      <td><input class="transparent" id="item" type="text"></td>
+                      <td><input class="transparent" id="price" type="text" placeholder=""></td>
+                      <td style="text-align: center; background:linear-gradient(to bottom, blue, white);border: 1px ; box-shadow: 0px 0px 7px whitesmoke; color: whitesmoke;border-radius: 6px;" class="transparent" onclick="addd()" id="add">Add(+)</td>
+                    </tr>
+                  </table>
+             </div>
+             <br>
+             <table class="big" id="new_item" >
+
+             </table>
+        </div>
+    </div>
+    </div>
+    </body>
+ 
+
+
+    <script>//Nexjs
+        let formet=document.getElementById("formet")
+        let add_item=document.getElementById('new_item')
+        let item=document.getElementById('item');
+        let price=document.getElementById('price');
+        let add=document.getElementById('add')
+         let pos=1
+
+         //to formate
+         formet.addEventListener('click',()=>{
+           add_item.innerHTML=""
+         })
+
+       
+         
+         function addd(){
+             add_item.innerHTML+= `<tr id="pos${pos}"> 
+                      <td id="div_item${pos}" class="transparent">${item.value} </td>
+                      <td id="div_price${pos}" class="transparent"> ${price.value}</td>
+                      <td   class="transparent"><table><td onclick="edit(${pos})" class="butt">Edit</td><td class="butt" onclick="del(${pos})">delete</td></table></td>
+                    </tr>`;
+                    item.value=''
+                    price.value=''
+                    console.log('aaa'+pos)
+                    pos++;
+
+                }
+
+                //to edit
+                 
+                function edit(poss){
+                  console.log(poss)
+                    let div_item=document.getElementById(`div_item${poss}`)
+                    console.log(div_item.innerHTML)
+                    let div_price=document.getElementById(`div_price${poss}`)
+                    let div=document.getElementById(`pos${poss}`)
+                    item.value= div_item.innerHTML;
+                    
+                    price.value=div_price.innerHTML
+                    div.style.display='none'
+                     
+
+                }
+                //to formet 
+                
+                
+                let del = (pos)=>{
+                 if(confirm('Are u sure, You want to delete these item')){  let element = document.getElementById(`pos${pos}`);
+                   element.parentNode.removeChild(element);}
+         }
+        
+              
+          
+         
+
+ // When the user clicks on div, open the popup
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+
+    </script>
+</body>
+<style>
+  body{
+    background:linear-gradient(to bottom , skyblue , whitesmoke);
+   min-height: 100vh;
+  }
+  
+  .big{
+    background: linear-gradient(to top, whitesmoke,green);
+    position: relative;
+    width: 90%;
+    left: 5%;
+    border-radius: 4px;
+  }
+  th{
+    position: relative;
+    height: 50px;
+  }
+   
+    table, th, td {
+      border:1px solid transparent;
+      box-shadow: 0px 0px 10px green;
+    }
+    td,th{
+        position: relative;
+        width: 222px;
+    }
+    .transparent{
+      background: transparent;
+       
+      width: 222px;
+      height: 30px;
+    }
+    #formet{
+      position: relative;
+      cursor: pointer;
+    }
+    .butt{
+      position: relative;
+      width: 500px;
+      height: 30px;
+      text-align: center;
+
+    }
+     
+   
+    </style>
+</html>
